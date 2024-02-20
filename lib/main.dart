@@ -3,6 +3,8 @@ import 'package:provider/provider.dart';
 import 'package:todo_app/providers/listTask.dart';
 import 'package:todo_app/views/all_tasks_page.dart';
 import 'package:todo_app/views/test.dart';
+import 'package:todo_app/views/today_tasks_page.dart';
+import 'package:todo_app/views/upcoming_tasks_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -70,7 +72,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
   final List<Widget> _tabs = [
     const AllTasksPage(),
-    const Test(), // Để chứa nội dung của tab "Profile"
+    const TodayTaskPage(),
+    const UpcomingTaskPage()
   ];
 
   void _incrementCounter(context) {
@@ -121,8 +124,12 @@ class _MyHomePageState extends State<MyHomePage> {
             label: 'All',
           ),
           const BottomNavigationBarItem(
-            icon: Icon(Icons.search),
-            label: 'Test',
+            icon: Icon(Icons.inbox),
+            label: 'Today',
+          ),
+          const BottomNavigationBarItem(
+            icon: Icon(Icons.inbox),
+            label: 'Upcoming',
           ),
         ],
       ),

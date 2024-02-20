@@ -3,24 +3,18 @@ import 'package:provider/provider.dart';
 import 'package:todo_app/providers/listTask.dart';
 import 'package:todo_app/widgets/task_card.dart';
 
-class AllTasksPage extends StatefulWidget {
-  const AllTasksPage({Key? key}) : super(key: key);
+class UpcomingTaskPage extends StatefulWidget {
+  const UpcomingTaskPage({Key? key}) : super(key: key);
 
   @override
-  State<AllTasksPage> createState() => _AllTasksPageState();
+  State<UpcomingTaskPage> createState() => _AllTasksPageState();
 }
 
-class _AllTasksPageState extends State<AllTasksPage> {
+class _AllTasksPageState extends State<UpcomingTaskPage> {
   bool isLoading = false;
 
   @override
-  void initState() {
-    // super.initState();
-    // tasks.add("Task 1");
-    // tasks.add("Task 1");
-    // tasks.add("Task 1");
-    // tasks.add("Task 1");
-  }
+  void initState() {}
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +27,7 @@ class _AllTasksPageState extends State<AllTasksPage> {
         : Consumer<ListTask>(builder: (context, tasksProvider, child) {
             return SingleChildScrollView(
               padding: const EdgeInsets.all(16),
-              child: tasksProvider.tasks.isNotEmpty
+              child: tasksProvider.filterTasksComingSoon().isNotEmpty
                   ? Column(
                       children: [
                         Align(
@@ -47,7 +41,8 @@ class _AllTasksPageState extends State<AllTasksPage> {
                             child: const Text('Refresh'),
                           ),
                         ),
-                        ...tasksProvider.tasks
+                        ...tasksProvider
+                            .filterTasksComingSoon()
                             .map((task) => TaskCard(
                                   task: task,
                                   updateTask: tasksProvider.updateTaskStatus,
