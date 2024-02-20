@@ -39,9 +39,16 @@ class _AddTaskPageState extends State<AddTaskPage> {
       lastDate: DateTime(2101),
     );
     if (picked != null && picked != _dueTime) {
-      setState(() {
-        _dueTime = picked;
-      });
+      final TimeOfDay? selectedTime = await showTimePicker(
+        context: context,
+        initialTime: TimeOfDay.now(),
+      );
+      if (selectedTime != null) {
+        setState(() {
+          _dueTime = DateTime(picked.year, picked.month, picked.day,
+              selectedTime.hour, selectedTime.minute);
+        });
+      }
     }
   }
 
@@ -111,7 +118,7 @@ class _AddTaskPageState extends State<AddTaskPage> {
                   Expanded(
                     child: Text(_dueTime == null
                         ? 'Select Due Date'
-                        : 'Due Date: ${DateFormat('dd/MM/yyyy').format(_dueTime!)}'),
+                        : 'Due Date: ${DateFormat('dd/MM/yyyy HH:mm').format(_dueTime!)}'),
                   ),
                   IconButton(
                     icon: Icon(Icons.calendar_today),
