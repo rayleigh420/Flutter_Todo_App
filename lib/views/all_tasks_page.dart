@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:todo_app/models/task.dart';
+import 'package:todo_app/providers/listTask.dart';
 import 'package:todo_app/widgets/task_card.dart';
 
 class AllTasksPage extends StatefulWidget {
@@ -32,47 +34,49 @@ class _AllTasksPageState extends State<AllTasksPage> {
               color: Colors.deepOrange,
             ),
           )
-        : SingleChildScrollView(
-            padding: const EdgeInsets.all(16),
-            child: tasks.isNotEmpty
-                ? Column(
-                    children: [
-                      Align(
-                        alignment: Alignment.centerRight,
-                        child: TextButton(
-                          onPressed: () {
-                            setState(() {
-                              // _fetchAllTasks();
-                            });
-                          },
-                          child: const Text('Refresh'),
+        : Consumer<ListTask>(builder: (context, tasksProvider, child) {
+            return SingleChildScrollView(
+              padding: const EdgeInsets.all(16),
+              child: tasksProvider.tasks.isNotEmpty
+                  ? Column(
+                      children: [
+                        Align(
+                          alignment: Alignment.centerRight,
+                          child: TextButton(
+                            onPressed: () {
+                              setState(() {
+                                // _fetchAllTasks();
+                              });
+                            },
+                            child: const Text('Refresh'),
+                          ),
                         ),
-                      ),
-                      ...tasks
-                          .map((task) => TaskCard(
-                                task: task,
-                                updateTask: _updateTask,
-                              ))
-                          .toList()
-                    ],
-                  )
-                : Column(
-                    children: [
-                      Align(
-                        alignment: Alignment.centerRight,
-                        child: TextButton(
-                          onPressed: () {
-                            setState(() {
-                              // _fetchAllTasks();
-                            });
-                          },
-                          child: const Text('Refresh'),
+                        ...tasksProvider.tasks
+                            .map((task) => TaskCard(
+                                  task: task,
+                                  updateTask: tasksProvider.updateTaskStatus,
+                                ))
+                            .toList()
+                      ],
+                    )
+                  : Column(
+                      children: [
+                        Align(
+                          alignment: Alignment.centerRight,
+                          child: TextButton(
+                            onPressed: () {
+                              setState(() {
+                                // _fetchAllTasks();
+                              });
+                            },
+                            child: const Text('Refresh'),
+                          ),
                         ),
-                      ),
-                      const Text('You have no unfinished todo')
-                    ],
-                  ),
-          );
+                        const Text('You have no unfinished todo')
+                      ],
+                    ),
+            );
+          });
   }
 
   void _updateTask(int? id) {
