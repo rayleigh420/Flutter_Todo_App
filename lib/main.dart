@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todo_app/providers/listTask.dart';
+import 'package:todo_app/views/add_task_page.dart';
 import 'package:todo_app/views/all_tasks_page.dart';
+import 'package:todo_app/views/search_task_page.dart';
 import 'package:todo_app/views/test.dart';
 import 'package:todo_app/views/today_tasks_page.dart';
 import 'package:todo_app/views/upcoming_tasks_page.dart';
@@ -73,7 +75,9 @@ class _MyHomePageState extends State<MyHomePage> {
   final List<Widget> _tabs = [
     const AllTasksPage(),
     const TodayTaskPage(),
-    const UpcomingTaskPage()
+    const UpcomingTaskPage(),
+    AddTaskPage(),
+    SearchTaskPage(),
   ];
 
   void _incrementCounter(context) {
@@ -113,6 +117,8 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,
+        selectedItemColor: Colors.blue, // Màu của biểu tượng được chọn
+        unselectedItemColor: Colors.grey,
         onTap: (index) {
           setState(() {
             _currentIndex = index;
@@ -124,12 +130,20 @@ class _MyHomePageState extends State<MyHomePage> {
             label: 'All',
           ),
           const BottomNavigationBarItem(
-            icon: Icon(Icons.inbox),
+            icon: Icon(Icons.today),
             label: 'Today',
           ),
           const BottomNavigationBarItem(
             icon: Icon(Icons.inbox),
             label: 'Upcoming',
+          ),
+          const BottomNavigationBarItem(
+            icon: Icon(Icons.add),
+            label: 'Add',
+          ),
+          const BottomNavigationBarItem(
+            icon: Icon(Icons.search),
+            label: 'Search',
           ),
         ],
       ),
