@@ -1,16 +1,31 @@
-# todo_app
+# TodoApp
 
-A new Flutter project.
+## Giới Thiệu
 
-## Getting Started
+Xin chào! Tôi là Lê Nhất Duy, một sinh viên đại học của trường Đại Học Khoa Học Tự Nhiên và đây là dự án TodoApp của tôi. MSSV của tôi là 20127479.
 
-This project is a starting point for a Flutter application.
+## Giới Thiệu Về Ứng Dụng
 
-A few resources to get you started if this is your first Flutter project:
+TodoApp là một ứng dụng di động được xây dựng bằng Flutter, giúp bạn quản lý các công việc hàng ngày một cách dễ dàng và hiệu quả.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## Hướng Dẫn Cài Đặt
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+1. **Yêu Cầu Hệ Thống**
+
+    - Đảm bảo bạn đã cài đặt Flutter trên máy tính của mình. Nếu chưa, bạn có thể tìm hiểu và cài đặt Flutter từ [trang chính thức của Flutter](https://flutter.dev/docs/get-started/install).
+
+2. **Cài Đặt Dependencies**
+
+    - Mở terminal và di chuyển vào thư mục chứa dự án TodoApp.
+    - Chạy lệnh sau để cài đặt các dependencies cần thiết:
+        ```
+        flutter pub get
+        ```
+
+3. **Chạy Ứng Dụng**
+    - Kết nối thiết bị di động của bạn hoặc khởi chạy một máy ảo để chạy ứng dụng Flutter.
+    - Mở terminal và di chuyển vào thư mục chứa dự án TodoApp.
+    - Chạy lệnh sau để khởi động ứng dụng trên thiết bị hoặc máy ảo:
+        ```
+        flutter run
+        ```
