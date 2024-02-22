@@ -50,7 +50,7 @@ class _SearchTaskPageState extends State<SearchTaskPage> {
               decoration: InputDecoration(
                 labelText: 'Search Task',
                 suffixIcon: IconButton(
-                  icon: Icon(Icons.clear),
+                  icon: const Icon(Icons.clear),
                   onPressed: () {
                     _searchController.clear();
                     _onSearchTextChanged('', taskProvider);
@@ -59,7 +59,7 @@ class _SearchTaskPageState extends State<SearchTaskPage> {
               ),
               onChanged: (value) => _onSearchTextChanged(value, taskProvider),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Expanded(
               child: ListView.builder(
                 itemCount: taskProvider.filteredTasks.length,
@@ -68,10 +68,15 @@ class _SearchTaskPageState extends State<SearchTaskPage> {
                   return ListTile(
                     title: Text(task.name),
                     subtitle: Text('Due Date: ${task.dueTime.toString()}'),
-                    // Định nghĩa hành động khi nhấn vào task
-                    onTap: () {
-                      // Thực hiện hành động tương ứng khi nhấn vào task
-                    },
+                    trailing: Checkbox(
+                      value: task.status,
+                      onChanged: (bool? id) {
+                        print("Edit");
+                        // Cập nhật trạng thái của task khi checkbox thay đổi
+                        taskProvider.updateTaskStatus(task.id);
+                      },
+                    ),
+                    onTap: () {},
                   );
                 },
               ),

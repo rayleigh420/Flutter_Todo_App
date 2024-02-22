@@ -41,6 +41,7 @@ class ListTask with ChangeNotifier {
     //   notifyListeners();
     // }
     _listTask.removeWhere((task) => task.id == taskId);
+    _filteredTasks.removeWhere((task) => task.id == taskId);
     notifyListeners();
   }
 
@@ -65,7 +66,7 @@ class ListTask with ChangeNotifier {
 
   void searchTasksByName(String keyword) {
     _debounce?.cancel();
-    _debounce = Timer(Duration(milliseconds: 500), () {
+    _debounce = Timer(const Duration(milliseconds: 500), () {
       _filteredTasks.clear();
       if (keyword.isEmpty) {
         // Nếu keyword rỗng, hiển thị tất cả task
